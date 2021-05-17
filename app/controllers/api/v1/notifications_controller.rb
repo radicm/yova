@@ -22,7 +22,7 @@ module Api
         authorize!(Notification, :create, nil, current_user)
 
         notification = CommunicationGateway.new.create(params[:content])
-        status       = notification ? :ok : :bad_request
+        status       = notification ? :created : :bad_request
 
         respond(notification, serilazier: Api::V1::NotificationSerializer, status: status)
       end
