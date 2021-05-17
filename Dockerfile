@@ -11,4 +11,9 @@ WORKDIR /app
 RUN bundle
 
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
-ENTRYPOINT ["rails", "s"]
+#ENTRYPOINT ["bundle", "exec", "rails", "s", "-p", "3001"]
+
+EXPOSE 3000
+
+# Configure the main process to run when running the image
+CMD ["./docker/start.sh"]
