@@ -12,11 +12,7 @@ module Api
       end
 
       def portfolios
-        user = User.find(params[:user_id])
-
-        authorize!(User, :portfolios, user, current_user)
-
-        portfolio = PortfolioReport.new(user).twr
+        portfolio = PortfolioReport.new(current_user).twr
 
         respond(portfolio, status: :ok)
       end

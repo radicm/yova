@@ -1,6 +1,7 @@
 module Policy
   class User
     def self.notifications(data, user)
+      puts data
       data.all? { |n| n.user_ids.include? user.id }
     end
 
