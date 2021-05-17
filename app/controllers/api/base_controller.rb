@@ -51,8 +51,6 @@ module Api
       serializer_args = args.delete(:serializer_args)
       status          = args.fetch(:status, :ok)
       meta            = args.except(:status, :paginate) { {} }
-      # meta[:errors]   = serialize_errors(meta[:errors]) if meta.key?(:errors)
-      # paginate        = args.delete(:paginate)
 
       if data.blank? # Hack because AMS does not handle nil serialization
         render json: { data: data, meta: meta }, status: status
@@ -66,7 +64,6 @@ module Api
         }
         rendering_args[:serializer]      = serializer unless serializer.nil?
         rendering_args[:each_serializer] = each_serializer unless each_serializer.nil?
-        # rendering_args[:meta].merge!(pagination_args(data)) if paginate
 
         render(rendering_args.merge(serializer_args || {}))
       end
