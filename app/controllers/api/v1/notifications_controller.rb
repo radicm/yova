@@ -4,13 +4,13 @@ module Api
       def index
         notifications = CommunicationGateway.new.list(params[:user_id])
 
-        authorize!(User, :notifications, notifications, current_user)
+        authorize!(Notification, :index, notifications, current_user)
 
         respond(notifications, each_serializer: Api::V1::NotificationSerializer, status: :ok)
       end
 
       def send_notification
-        authorize!(User, :notifications, nil, current_user)
+        authorize!(Notification, :send_notification, nil, current_user)
 
         notification = CommunicationGateway.new.push(params[:notification_id], params[:user_ids])
         status       = notification ? :ok : :bad_request
@@ -19,7 +19,7 @@ module Api
       end
 
       def create
-        authorize!(User, :notifications, nil, current_user)
+        authorize!(Notification, :create, nil, current_user)
 
         notification = CommunicationGateway.new.create(params[:content])
         status       = notification ? :ok : :bad_request
