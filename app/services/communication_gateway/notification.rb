@@ -13,10 +13,11 @@ class CommunicationGateway
     # @param [Integer] user_ids
     def push(id, user_ids)
       notification = ::Notification.find(id)
+      User.find(user_ids)
 
       false if notification.nil?
 
-      notification.update(user_ids: user_ids)
+      notification.update(user_ids: (notification.user_ids + user_ids).uniq)
     end
 
     # @param [Integer] user_id
