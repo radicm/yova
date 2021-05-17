@@ -10,12 +10,16 @@
     
 * Starting app
     *  docker-compose build app
-    *  docker-compose start app 
+    *  docker-compose start app
+    *  docker exec -it app_id bash
+       rails stock_market:sync
+       It will take 10min to initial start app because of stock value sync
+  
 
 * Database creation & initialization
     * rails db:seed
     * rails db:migrate
-    
-* How to run the test suite
-    * rspec
+  
+* Rubocop
+    * rubocop
     
