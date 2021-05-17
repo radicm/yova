@@ -1,0 +1,4 @@
+stock_market_gateway:
+  alphavandage:
+    # NOTE: API key is intentianly left here so you could test app
+    api_key: "PZY8CTPW690S5CGU"
