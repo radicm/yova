@@ -8,9 +8,6 @@ Rails.application.routes.draw do
 
       namespace :users do
         get "notifications"
-      end
-
-      resources :users, only: [] do
         get :portfolios
       end
 
